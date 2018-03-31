@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 7ec8ce1b25a8a3e4aa44bd16313ceee7
+timeCreated: 1510529398
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scoreText: {instanceID: 0}
+  - winText: {instanceID: 0}
+  - prefabVillain: {fileID: 1961599344205212, guid: 76009ab416d8aeb479b0c3456ac59c7d,
+      type: 2}
+  - prefabFastVillain: {fileID: 1745644271824340, guid: 1c529e26740a56845b94c79437ab1fb7,
+      type: 2}
+  - prefabAgileVillain: {fileID: 1042164242193964, guid: b02ab307ead856b4090219f1550661ea,
+      type: 2}
+  - prefabAlphaVillain: {fileID: 1684253222982178, guid: 4231600fb991ebd4f9e6cbc284c8a8af,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
