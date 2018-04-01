@@ -44,7 +44,7 @@ public class VillainController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.SetActive(false);
-            gameController.endGame("You Lose!");
+            gameController.Lose();
         }
     }
 

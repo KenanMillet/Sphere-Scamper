@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
     public Text winText;
     public string startText = "Avoid the balls and collect 10 squares!";
     public string tryAgainText = "Try Again?";
+    public string winMessage = "You Win!";
+    public string loseMessage = "You Lose!";
     private int score;
     public int scoreWinValue;
 
@@ -16,6 +18,10 @@ public class GameController : MonoBehaviour {
 
     public GameObject player;
 
+    public AudioSource victory;
+    public AudioSource death;
+    public AudioSource collect;
+    public AudioSource music;
 
     private Vector3 playerStart = new Vector3(0, 0.5f, 0);
 
@@ -38,7 +44,6 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     private void Start () {
 
-
         foreach (VillainSpawn vs in villains)
         {
             vs.villain.gameObject.SetActive(false);
@@ -60,16 +65,14 @@ public class GameController : MonoBehaviour {
     {
         if (score >= scoreWinValue)
         {
-            endGame("You win!");
-
+            Win();
         }
-
         foreach (VillainSpawn vs in villains)
         {
             if (score == vs.scoreTrigger) vs.villain.gameObject.SetActive(true);
         }
-
         scoreText.text = score + "/ " + scoreWinValue;
+
     }
 
 
@@ -100,16 +103,30 @@ public class GameController : MonoBehaviour {
             spawner.GetComponent<DimensionalShifterController>().StartSpawning();
         }
 
-        this.GetComponent<AudioSource>().Play();
+        music.Play();
     }
 
 
     public void AddScore(int newScoreValue)
     {
         score += newScoreValue;
+        collect.Play();
         UpdateScoreText();
     }
 
+    public void Lose()
+    {
+        music.Stop();
+        death.Play();
+        endGame(loseMessage);
+    }
+
+    public void Win()
+    {
+        music.Stop();
+        victory.Play();
+        endGame(winMessage);
+    }
 
     public void endGame(string endMessage)
     {
