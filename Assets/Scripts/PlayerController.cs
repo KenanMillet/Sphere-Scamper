@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         {
             Destroy(other.gameObject);
             gameController.AddScore(1);
-    
+            
         }
     }
 
