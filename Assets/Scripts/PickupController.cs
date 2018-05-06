@@ -10,13 +10,20 @@ public class PickupController : MonoBehaviour {
 
     public bool stopSpawn;
 
-    public int initialSpawnWait;
+    public bool hasInitialSpawn;
+    private bool shouldSpawnInitial;
+    public Vector3 initialSpawnOffset;
+
+    public float initialMinSpawnWait;
+    public float initialMaxSpawnWait;
 
     public float spawnMinWait;
     public float spawnMaxWait;
 
     public int spawnMaxAmt;
     public int totalSpawned;
+
+    public int powerupChance;
     
 
     public GameObject prefabPickup;
@@ -25,7 +32,7 @@ public class PickupController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        shouldSpawnInitial = hasInitialSpawn;
     }
 
     // Update is called once per frame
@@ -41,19 +48,28 @@ public class PickupController : MonoBehaviour {
 
     public void SpawnPickup()
     {
-        Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+        Vector3 pos;
+        if (shouldSpawnInitial == true)
+        {
+            pos = center + initialSpawnOffset;
+            shouldSpawnInitial = false;
+        }
+        else
+        {
+            pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+        }
 
         Instantiate(prefabPickup, pos, Quaternion.identity);
     }
 
     IEnumerator WaitSpawner()
     {
-        yield return new WaitForSeconds(initialSpawnWait);
+        yield return new WaitForSeconds(Random.Range(initialMinSpawnWait, initialMaxSpawnWait));
 
         while (!stopSpawn && (totalSpawned < spawnMaxAmt))
         {
             Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-            if(Random.Range(1,100) <= 25)//put this here so first spawning pickup isnt a powerup.
+            if(Random.Range(1,100) <= powerupChance)//put this here so first spawning pickup isnt a powerup.
             {
                 Instantiate(prefabPowerup, pos, Quaternion.identity);
             }
@@ -75,6 +91,7 @@ public class PickupController : MonoBehaviour {
     public void StopSpawning()
     {
         StopCoroutine(spawnRoutine);
+        shouldSpawnInitial = hasInitialSpawn;
     }
 
 

@@ -59,6 +59,7 @@ MonoBehaviour:
   spawnMaxWait: 0
   spawnMaxAmt: 0
   totalSpawned: 0
+  powerupChance: 20
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 0}

@@ -1,19 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public float acceleration;
     public float maxSpd;
     private Rigidbody rb;
-
     Vector3 movement;
 
-    public GameController gameController;
+    GameController gameController;
+    public GameObject shockwave;
+
+    bool poweredUp;
 
     void Update() //most game code will go here
     {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
+        movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
+        
+        if(Input.GetButtonDown("Use Powerup") && poweredUp == true)
+        {
+            poweredUp = false;
+            shockwave.SetActive(true);
+        }
     }
 
 
@@ -34,14 +46,8 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()// called before physics calcs
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        rb.AddForce(movement * acceleration);
 
-        movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
-
-        rb.AddForce(movement * speed);
-
-        //Option A:
         Vector2 velocity2D = new Vector2(rb.velocity.x, rb.velocity.z);
         if (velocity2D.magnitude > maxSpd)
         {
@@ -60,8 +66,17 @@ public class PlayerController : MonoBehaviour {
         {
             Destroy(other.gameObject);
             gameController.AddScore(1);
-            
         }
+        else if (other.gameObject.CompareTag("Power Up"))
+        {
+            Destroy(other.gameObject);
+            poweredUp = true;
+        }
+    }
+
+    void OnEnable()
+    {
+        shockwave.SetActive(false);
     }
 
 }
