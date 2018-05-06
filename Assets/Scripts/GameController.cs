@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour {
 
     public GameObject player;
 
+    public GameObject groundSpawn;
+
     public AudioSource victory;
     public AudioSource death;
     public AudioSource collect;
@@ -99,9 +101,10 @@ public class GameController : MonoBehaviour {
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<DimensionalShifterController>().stopSpawn = false;
-            spawner.GetComponent<DimensionalShifterController>().StartSpawning();
+            spawner.GetComponent<PickupController>().stopSpawn = false;
         }
+
+        groundSpawn.GetComponent<PickupController>().SpawnPickup();
 
         music.Play();
     }
@@ -112,6 +115,13 @@ public class GameController : MonoBehaviour {
         score += newScoreValue;
         collect.Play();
         UpdateScoreText();
+        if (score == 1)
+        {
+            foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
+            {
+                spawner.GetComponent<PickupController>().StartSpawning();
+            }
+        }
     }
 
     public void Lose()
@@ -143,8 +153,8 @@ public class GameController : MonoBehaviour {
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<DimensionalShifterController>().StopSpawning();
-            spawner.GetComponent<DimensionalShifterController>().totalSpawned = 0;
+            spawner.GetComponent<PickupController>().StopSpawning();
+            spawner.GetComponent<PickupController>().totalSpawned = 0;
 
         }
         tryAgainButton.SetActive(true);

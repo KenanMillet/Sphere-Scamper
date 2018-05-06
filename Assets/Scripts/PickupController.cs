@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DimensionalShifterController : MonoBehaviour {
+public class PickupController : MonoBehaviour {
 
     public Vector3 center;
     public Vector3 size;
