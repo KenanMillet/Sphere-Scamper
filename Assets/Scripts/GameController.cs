@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -95,7 +96,6 @@ public class GameController : MonoBehaviour {
             vs.villain.GetComponent<Rigidbody>().velocity = stop;
             vs.villain.gameObject.SetActive(false);
         }
-        villains[0].villain.gameObject.SetActive(true);
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
@@ -156,9 +156,9 @@ public class GameController : MonoBehaviour {
 
     }
 
-    public void QuitGame()
+    public void GotoMainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
 }
