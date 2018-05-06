@@ -19,7 +19,8 @@ public class PickupController : MonoBehaviour {
     public int totalSpawned;
     
 
-    public GameObject prefabDimensionalShifter;
+    public GameObject prefabPickup;
+    public GameObject prefabPowerup;
 
 
 	// Use this for initialization
@@ -42,7 +43,7 @@ public class PickupController : MonoBehaviour {
     {
         Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
 
-        Instantiate(prefabDimensionalShifter, pos, Quaternion.identity);
+        Instantiate(prefabPickup, pos, Quaternion.identity);
     }
 
     IEnumerator WaitSpawner()
@@ -52,8 +53,15 @@ public class PickupController : MonoBehaviour {
         while (!stopSpawn && (totalSpawned < spawnMaxAmt))
         {
             Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-            Instantiate(prefabDimensionalShifter, pos, Quaternion.identity);
-            totalSpawned++;
+            if(Random.Range(1,100) <= 25)//put this here so first spawning pickup isnt a powerup.
+            {
+                Instantiate(prefabPowerup, pos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(prefabPickup, pos, Quaternion.identity);
+                totalSpawned++;
+            }
             yield return new WaitForSeconds(Random.Range(spawnMinWait, spawnMaxWait));
         }
     }

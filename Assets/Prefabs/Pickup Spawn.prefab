@@ -59,5 +59,6 @@ MonoBehaviour:
   spawnMaxWait: 0
   spawnMaxAmt: 0
   totalSpawned: 0
-  prefabDimensionalShifter: {fileID: 1661006001617204, guid: 86965d1c65ad44d4799253bc58665fda,
+  prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
+  prefabPowerup: {fileID: 0}

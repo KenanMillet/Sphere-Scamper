@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
         movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
 
         rb.AddForce(movement * speed);
+
     }
 
     private void OnTriggerEnter(Collider other)
