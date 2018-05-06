@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -17,6 +18,8 @@ public class GameController : MonoBehaviour {
     public GameObject quitButton;
 
     public GameObject player;
+
+    public GameObject groundSpawn;
 
     public AudioSource victory;
     public AudioSource death;
@@ -95,13 +98,13 @@ public class GameController : MonoBehaviour {
             vs.villain.GetComponent<Rigidbody>().velocity = stop;
             vs.villain.gameObject.SetActive(false);
         }
-        villains[0].villain.gameObject.SetActive(true);
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<DimensionalShifterController>().stopSpawn = false;
-            spawner.GetComponent<DimensionalShifterController>().StartSpawning();
+            spawner.GetComponent<PickupController>().stopSpawn = false;
         }
+
+        groundSpawn.GetComponent<PickupController>().SpawnPickup();
 
         music.Play();
     }
@@ -112,6 +115,13 @@ public class GameController : MonoBehaviour {
         score += newScoreValue;
         collect.Play();
         UpdateScoreText();
+        if (score == 1)
+        {
+            foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
+            {
+                spawner.GetComponent<PickupController>().StartSpawning();
+            }
+        }
     }
 
     public void Lose()
@@ -143,8 +153,8 @@ public class GameController : MonoBehaviour {
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<DimensionalShifterController>().StopSpawning();
-            spawner.GetComponent<DimensionalShifterController>().totalSpawned = 0;
+            spawner.GetComponent<PickupController>().StopSpawning();
+            spawner.GetComponent<PickupController>().totalSpawned = 0;
 
         }
         tryAgainButton.SetActive(true);
@@ -156,9 +166,9 @@ public class GameController : MonoBehaviour {
 
     }
 
-    public void QuitGame()
+    public void GotoMainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
 }
