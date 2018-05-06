@@ -64,17 +64,9 @@ public class GameController : MonoBehaviour {
 		
 	}
 
-    private void UpdateScoreText()
+    private void UpdateScorePanelText()
     {
-        if (score >= scoreWinValue)
-        {
-            Win();
-        }
-        foreach (VillainSpawn vs in villains)
-        {
-            if (score == vs.scoreTrigger) vs.villain.gameObject.SetActive(true);
-        }
-        scoreText.text = score + "/ " + scoreWinValue;
+        scoreText.text = "Score: " + score + "/ " + scoreWinValue + Environment.NewLine + "Has Powerup: " + player.GetComponent<PlayerController>().poweredUp;
 
     }
 
@@ -84,8 +76,9 @@ public class GameController : MonoBehaviour {
         tryAgainButton.SetActive(false);
         quitButton.SetActive(false);
 
+        player.GetComponent<PlayerController>().poweredUp = false;
         score = 0;
-        UpdateScoreText();//to initialize on screen
+        UpdateScorePanelText();//to initialize on screen
         winText.text = "";//see above;
 
         player.SetActive(true);
@@ -114,13 +107,22 @@ public class GameController : MonoBehaviour {
     {
         score += newScoreValue;
         collect.Play();
-        UpdateScoreText();
+        UpdateScorePanelText();
         if (score == 1)
         {
             foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
             {
                 spawner.GetComponent<PickupController>().StartSpawning();
             }
+        }
+        else if (score >= scoreWinValue)
+        {
+            Win();
+        }
+        foreach (VillainSpawn vs in villains)
+        {
+            if (score == vs.scoreTrigger)
+                vs.villain.gameObject.SetActive(true);
         }
     }
 
@@ -149,6 +151,11 @@ public class GameController : MonoBehaviour {
         foreach (GameObject shifter in GameObject.FindGameObjectsWithTag("Pick Up"))
         {
             Destroy(shifter);
+        }
+
+        foreach (GameObject powerup in GameObject.FindGameObjectsWithTag("Power Up"))
+        {
+            Destroy(powerup);
         }
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     GameController gameController;
     public GameObject shockwave;
 
-    bool poweredUp;
+    public bool poweredUp;
 
     void Update() //most game code will go here
     {
@@ -67,10 +67,12 @@ public class PlayerController : MonoBehaviour {
             Destroy(other.gameObject);
             gameController.AddScore(1);
         }
-        else if (other.gameObject.CompareTag("Power Up"))
+        else if (other.gameObject.CompareTag("Power Up") && poweredUp == false)
         {
             Destroy(other.gameObject);
             poweredUp = true;
+            gameController.AddScore(1);
+            
         }
     }
 
