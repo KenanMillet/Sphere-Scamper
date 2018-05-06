@@ -11,16 +11,9 @@ public class MenuController : MonoBehaviour {
         SceneManager.LoadScene(sceneIndex);
     }
 
-    public void SwitchPanels(GameObject currPanel, GameObject nextPanel)
+    public void Quit()
     {
-        currPanel.SetActive(false);
-        nextPanel.SetActive(true);
-
-    }
-
-    public void Exit(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex);
+        Application.Quit();
     }
 
 }
