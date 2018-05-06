@@ -4,6 +4,7 @@
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public float maxSpd;
     private Rigidbody rb;
 
     Vector3 movement;
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() //most game code will go here
     {
-  
+
     }
 
 
@@ -40,6 +41,17 @@ public class PlayerController : MonoBehaviour {
 
         rb.AddForce(movement * speed);
 
+        //Option A:
+        Vector2 velocity2D = new Vector2(rb.velocity.x, rb.velocity.z);
+        if (velocity2D.magnitude > maxSpd)
+        {
+            velocity2D = velocity2D.normalized * maxSpd;
+            Debug.Log(velocity2D);
+            Vector3 velocity3D = rb.velocity;
+            velocity3D.x = velocity2D.x;
+            velocity3D.z = velocity2D.y;
+            rb.velocity = velocity3D;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

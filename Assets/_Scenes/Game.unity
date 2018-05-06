@@ -704,11 +704,6 @@ MonoBehaviour:
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
     type: 2}
---- !u!4 &239811715 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4184959075861384, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
-    type: 2}
-  m_PrefabInternal: {fileID: 701542857}
 --- !u!1 &306346719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,10 +1768,10 @@ MonoBehaviour:
   - scoreTrigger: 1
     villain: {fileID: 646064916}
     spawnPoint: {x: -9.5, y: 0.5, z: 0}
-  - scoreTrigger: 2
+  - scoreTrigger: 3
     villain: {fileID: 1707056665}
     spawnPoint: {x: 9.5, y: 0.5, z: 0}
-  - scoreTrigger: 4
+  - scoreTrigger: 5
     villain: {fileID: 1632097609}
     spawnPoint: {x: 0, y: 0.5, z: 9.5}
   - scoreTrigger: 7
@@ -2612,6 +2607,16 @@ Prefab:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 853360894}
+    - target: {fileID: 195776641961137654, guid: 1c529e26740a56845b94c79437ab1fb7,
+        type: 2}
+      propertyPath: m_Speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 195776641961137654, guid: 1c529e26740a56845b94c79437ab1fb7,
+        type: 2}
+      propertyPath: m_Acceleration
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c529e26740a56845b94c79437ab1fb7, type: 2}
   m_IsPrefabParent: 0
@@ -2763,7 +2768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6592d5c865a6bda4197935d9bf5736a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
+  speed: 40
+  maxSpd: 15
   gameController: {fileID: 0}
 --- !u!135 &1424815793
 SphereCollider:
@@ -3026,34 +3032,6 @@ Transform:
   m_Father: {fileID: 63557162}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1599141433
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1599141434}
-  m_Layer: 0
-  m_Name: Area Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1599141434
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1599141433}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 239811715}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1604726857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4306,6 +4284,11 @@ Prefab:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 853360894}
+    - target: {fileID: 195483302303774232, guid: 76009ab416d8aeb479b0c3456ac59c7d,
+        type: 2}
+      propertyPath: m_Speed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76009ab416d8aeb479b0c3456ac59c7d, type: 2}
   m_IsPrefabParent: 0
