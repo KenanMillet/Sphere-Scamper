@@ -13,12 +13,14 @@ public class PowerupController : PickupController {
             {
                 player.setPoweredUp(true);
                 gameController.AddScore(1);
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            Destroy(this);
+            //parentSpawner.totalSpawned--;
+            //parentSpawner.SpawnPickup();
+            Destroy(this.gameObject);
         }
     }
 }

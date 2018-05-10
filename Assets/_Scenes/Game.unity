@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_Name
-      value: West Floor
+      value: East Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_TagString
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 55249024}
   - component: {fileID: 55249026}
   m_Layer: 0
-  m_Name: West Floor
+  m_Name: East Spawn
   m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,21 +209,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 55249025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -23.74, y: 2.37, z: -10}
-  size: {x: 19.5, y: 0.1, z: 47}
+  center: {x: 23.6, y: 2.37, z: 10}
+  size: {x: 19, y: 0.1, z: 47}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 0
-  initialMaxSpawnWait: 10
-  spawnMinWait: 15
-  spawnMaxWait: 45
+  initialMinSpawnWait: 3
+  initialMaxSpawnWait: 8
+  spawnMinWait: 12
+  spawnMaxWait: 30
   spawnMaxAmt: 3
   totalSpawned: 0
-  powerupChance: 5
+  powerupChance: 10
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -265,7 +266,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4505660125936686, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_Name
@@ -294,10 +295,10 @@ Transform:
   m_GameObject: {fileID: 56070267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.375, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1735306480}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &56070267
 GameObject:
@@ -324,21 +325,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 56070267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -10, y: 2.37, z: 23.74}
-  size: {x: 47, y: 0, z: 19.5}
+  center: {x: -10, y: 2.37, z: 23.6}
+  size: {x: 47, y: 0.1, z: 19}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 0
-  initialMaxSpawnWait: 10
-  spawnMinWait: 15
-  spawnMaxWait: 45
+  initialMinSpawnWait: 3
+  initialMaxSpawnWait: 8
+  spawnMinWait: 12
+  spawnMaxWait: 30
   spawnMaxAmt: 3
   totalSpawned: 0
-  powerupChance: 5
+  powerupChance: 10
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -486,21 +488,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 121320557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -0.08, y: 9.396, z: 57.83}
-  size: {x: 133, y: 0.1, z: 19}
+  center: {x: 0, y: 9.396, z: 57.6}
+  size: {x: 134.58, y: 0.1, z: 19}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 15
-  initialMaxSpawnWait: 30
-  spawnMinWait: 15
-  spawnMaxWait: 45
-  spawnMaxAmt: 3
+  initialMinSpawnWait: 10
+  initialMaxSpawnWait: 20
+  spawnMinWait: 10
+  spawnMaxWait: 25
+  spawnMaxAmt: 4
   totalSpawned: 0
-  powerupChance: 15
+  powerupChance: 20
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -704,21 +707,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 227452994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -57.82, y: 9.396, z: 0.48}
-  size: {x: 19, y: 0.1, z: 133}
+  center: {x: -57.6, y: 9.396, z: 0}
+  size: {x: 19, y: 0.1, z: 134.58}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 15
-  initialMaxSpawnWait: 30
-  spawnMinWait: 15
-  spawnMaxWait: 45
-  spawnMaxAmt: 3
+  initialMinSpawnWait: 10
+  initialMaxSpawnWait: 20
+  spawnMinWait: 10
+  spawnMaxWait: 25
+  spawnMaxAmt: 4
   totalSpawned: 0
-  powerupChance: 15
+  powerupChance: 20
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -2181,7 +2185,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_Name
-      value: South Floor
+      value: South Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_TagString
@@ -2209,7 +2213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1735306480}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002493176
 GameObject:
@@ -2222,7 +2226,7 @@ GameObject:
   - component: {fileID: 1002493175}
   - component: {fileID: 1002493177}
   m_Layer: 0
-  m_Name: South Floor
+  m_Name: South Spawn
   m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2236,21 +2240,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1002493176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 10, y: 2.37, z: -23.74}
-  size: {x: 47, y: 0.1, z: 19.5}
+  center: {x: 10, y: 2.37, z: -23.6}
+  size: {x: 47, y: 0.1, z: 19}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 0
-  initialMaxSpawnWait: 10
-  spawnMinWait: 15
-  spawnMaxWait: 45
+  initialMinSpawnWait: 3
+  initialMaxSpawnWait: 8
+  spawnMinWait: 12
+  spawnMaxWait: 30
   spawnMaxAmt: 3
   totalSpawned: 0
-  powerupChance: 5
+  powerupChance: 10
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -2384,7 +2389,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1415893134}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1059278289
 GameObject:
@@ -3060,7 +3065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415893134}
   m_Layer: 0
-  m_Name: Second Floor
+  m_Name: Second Floor Spawns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3078,8 +3083,8 @@ Transform:
   m_Children:
   - {fileID: 545764907}
   - {fileID: 687610016}
-  - {fileID: 1814217655}
   - {fileID: 1038369831}
+  - {fileID: 1814217655}
   m_Father: {fileID: 1709072399}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3306,7 +3311,7 @@ Transform:
   m_GameObject: {fileID: 1768559852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1709072399}
   m_RootOrder: 0
@@ -3902,9 +3907,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 56070266}
   - {fileID: 2074972574}
   - {fileID: 1002493175}
+  - {fileID: 56070266}
   - {fileID: 55249024}
   m_Father: {fileID: 1709072399}
   m_RootOrder: 1
@@ -4093,21 +4098,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753270249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -0.08, y: 9.396, z: -57.83}
-  size: {x: 133, y: 0.1, z: 19}
+  center: {x: 0, y: 9.396, z: -57.6}
+  size: {x: 134.58, y: 0.1, z: 19}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 15
-  initialMaxSpawnWait: 30
-  spawnMinWait: 15
-  spawnMaxWait: 45
-  spawnMaxAmt: 3
+  initialMinSpawnWait: 10
+  initialMaxSpawnWait: 20
+  spawnMinWait: 10
+  spawnMaxWait: 25
+  spawnMaxAmt: 4
   totalSpawned: 0
-  powerupChance: 15
+  powerupChance: 20
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -4137,7 +4143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1768559852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0.5, z: 0}
@@ -4145,13 +4151,14 @@ MonoBehaviour:
   stopSpawn: 0
   hasInitialSpawn: 1
   initialSpawnOffset: {x: 9.5, y: 0, z: 0}
-  initialMinSpawnWait: 25
-  initialMaxSpawnWait: 40
+  initialMinSpawnWait: 20
+  initialMaxSpawnWait: 30
   spawnMinWait: 15
-  spawnMaxWait: 45
+  spawnMaxWait: 30
   spawnMaxAmt: 4
   totalSpawned: 0
-  powerupChance: 0
+  powerupChance: 15
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -4255,7 +4262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1415893134}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824208288
 GameObject:
@@ -4818,21 +4825,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966940863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 57.82, y: 9.396, z: 0.48}
-  size: {x: 19, y: 0.1, z: 133}
+  center: {x: 57.6, y: 9.396, z: 0}
+  size: {x: 19, y: 0.1, z: 134.58}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 15
-  initialMaxSpawnWait: 30
-  spawnMinWait: 15
-  spawnMaxWait: 45
-  spawnMaxAmt: 3
+  initialMinSpawnWait: 10
+  initialMaxSpawnWait: 20
+  spawnMinWait: 10
+  spawnMaxWait: 25
+  spawnMaxAmt: 4
   totalSpawned: 0
-  powerupChance: 15
+  powerupChance: 20
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,
@@ -5228,7 +5236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_Name
-      value: East Spawn
+      value: West Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 1418802618784034, guid: e6246ac156cb1d844bace4a046a4f98e, type: 2}
       propertyPath: m_TagString
@@ -5250,7 +5258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1735306480}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074972575
 GameObject:
@@ -5263,7 +5271,7 @@ GameObject:
   - component: {fileID: 2074972574}
   - component: {fileID: 2074972576}
   m_Layer: 0
-  m_Name: East Spawn
+  m_Name: West Spawn
   m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5277,21 +5285,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2074972575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f20f870f937b344d8e3f34f53d7544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 23.74, y: 2.37, z: 10}
-  size: {x: 19.5, y: 0.1, z: 47}
+  center: {x: -23.6, y: 2.37, z: -10}
+  size: {x: 19, y: 0.1, z: 47}
   stopSpawn: 0
   hasInitialSpawn: 0
   initialSpawnOffset: {x: 0, y: 0, z: 0}
-  initialMinSpawnWait: 0
-  initialMaxSpawnWait: 10
-  spawnMinWait: 15
-  spawnMaxWait: 45
+  initialMinSpawnWait: 3
+  initialMaxSpawnWait: 8
+  spawnMinWait: 12
+  spawnMaxWait: 30
   spawnMaxAmt: 3
   totalSpawned: 0
-  powerupChance: 5
+  powerupChance: 10
+  currentPickups: []
   prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
     type: 2}
   prefabPowerup: {fileID: 1083571819615504, guid: 9d86535fae52ebb4996d8d9ff71bd92f,

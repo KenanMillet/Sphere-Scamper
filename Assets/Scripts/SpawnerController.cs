@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerController : MonoBehaviour {
@@ -24,6 +25,8 @@ public class SpawnerController : MonoBehaviour {
     public int totalSpawned;
 
     public int powerupChance;
+
+    //public List<GameObject> currentPickups;
     
 
     public GameObject prefabPickup;
@@ -34,6 +37,7 @@ public class SpawnerController : MonoBehaviour {
 	void Start ()
     {
         shouldSpawnInitial = hasInitialSpawn;
+        //prefabPickup.GetComponent<PickupController>().setParentSpawner(this);
     }
 
     // Update is called once per frame

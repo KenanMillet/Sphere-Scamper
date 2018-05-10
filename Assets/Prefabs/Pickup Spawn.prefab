@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4505660125936686}
-  - component: {fileID: 114754432791964332}
+  - component: {fileID: 114828532095317946}
   m_Layer: 0
   m_Name: Pickup Spawn
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114754432791964332
+--- !u!114 &114828532095317946
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,18 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418802618784034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daec2be832e55924185de4f0c7c17155, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aac8f1f48a4e4642bf748e4e6f74fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
-  stopSpawn: 0
-  initialSpawnWait: 0
-  spawnMinWait: 0
-  spawnMaxWait: 0
-  spawnMaxAmt: 0
-  totalSpawned: 0
-  powerupChance: 20
-  prefabPickup: {fileID: 1661006001617204, guid: fbcb1174fcba12544a9788445daf00bc,
-    type: 2}
-  prefabPowerup: {fileID: 0}
+  angularVelocity: {x: 15, y: 30, z: 45}

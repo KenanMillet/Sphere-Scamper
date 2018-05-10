@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
         if (velocity2D.magnitude > maxSpd)
         {
             velocity2D = velocity2D.normalized * maxSpd;
-            Debug.Log(velocity2D);
+            //Debug.Log(velocity2D);
             Vector3 velocity3D = rb.velocity;
             velocity3D.x = velocity2D.x;
             velocity3D.z = velocity2D.y;
