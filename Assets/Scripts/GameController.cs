@@ -94,10 +94,10 @@ public class GameController : MonoBehaviour {
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<PickupController>().stopSpawn = false;
+            spawner.GetComponent<SpawnerController>().stopSpawn = false;
         }
 
-        groundSpawn.GetComponent<PickupController>().SpawnPickup();
+        groundSpawn.GetComponent<SpawnerController>().SpawnPickup();
 
         music.Play();
     }
@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour {
         {
             foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
             {
-                spawner.GetComponent<PickupController>().StartSpawning();
+                spawner.GetComponent<SpawnerController>().StartSpawning();
             }
         }
         else if (score >= scoreWinValue)
@@ -160,8 +160,8 @@ public class GameController : MonoBehaviour {
 
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
-            spawner.GetComponent<PickupController>().StopSpawning();
-            spawner.GetComponent<PickupController>().totalSpawned = 0;
+            spawner.GetComponent<SpawnerController>().StopSpawning();
+            spawner.GetComponent<SpawnerController>().totalSpawned = 0;
 
         }
         tryAgainButton.SetActive(true);

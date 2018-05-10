@@ -60,25 +60,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Pick Up"))
-        {
-            Destroy(other.gameObject);
-            gameController.AddScore(1);
-        }
-        else if (other.gameObject.CompareTag("Power Up") && poweredUp == false)
-        {
-            Destroy(other.gameObject);
-            poweredUp = true;
-            gameController.AddScore(1);
-            
-        }
-    }
+   
 
     void OnEnable()
     {
         shockwave.SetActive(false);
+    }
+
+    public bool getPoweredUp()
+    {
+        return this.poweredUp;
+    }
+
+    public void setPoweredUp(bool isIt)
+    {
+        poweredUp = isIt;
     }
 
 }

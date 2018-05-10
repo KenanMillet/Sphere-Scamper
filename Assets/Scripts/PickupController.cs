@@ -1,98 +1,62 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickupController : MonoBehaviour {
 
-    public Vector3 center;
-    public Vector3 size;
+    protected GameController gameController;
+    protected PlayerController player;
+    protected SpawnerController parentSpawner;
 
-    private IEnumerator spawnRoutine;
+    public Vector3 angularVelocity = new Vector3(15, 30, 45);
 
-    public bool stopSpawn;
-
-    public bool hasInitialSpawn;
-    private bool shouldSpawnInitial;
-    public Vector3 initialSpawnOffset;
-
-    public float initialMinSpawnWait;
-    public float initialMaxSpawnWait;
-
-    public float spawnMinWait;
-    public float spawnMaxWait;
-
-    public int spawnMaxAmt;
-    public int totalSpawned;
-
-    public int powerupChance;
-    
-
-    public GameObject prefabPickup;
-    public GameObject prefabPowerup;
-
-
-	// Use this for initialization
-	void Start () {
-        shouldSpawnInitial = hasInitialSpawn;
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-	}
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(center, size);
-    }
-
-    public void SpawnPickup()
-    {
-        Vector3 pos;
-        if (shouldSpawnInitial == true)
+    // Use this for initialization
+    void Start () {
+        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        if (gameControllerObject != null)
         {
-            pos = center + initialSpawnOffset;
-            shouldSpawnInitial = false;
+            gameController = gameControllerObject.GetComponent<GameController>();
         }
-        else
+        if (gameController == null)
         {
-            pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+            Debug.Log("Cannot find 'GameController' script");
         }
 
-        Instantiate(prefabPickup, pos, Quaternion.identity);
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<PlayerController>();
+        }
+        if (player == null)
+        {
+            Debug.Log("Cannot find 'Player' script");
+        }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        transform.Rotate(angularVelocity * Time.deltaTime);// rotates object by 15 x, 30 y, and 45 z, where each value is multiplied by the amount of deltatime 
+                                                                   // (The time in seconds it took to complete the last frame ) that have passed, to make it frame independent.
     }
 
-    IEnumerator WaitSpawner()
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(Random.Range(initialMinSpawnWait, initialMaxSpawnWait));
-
-        while (!stopSpawn && (totalSpawned < spawnMaxAmt))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-            if(Random.Range(1,100) <= powerupChance)//put this here so first spawning pickup isnt a powerup.
-            {
-                Instantiate(prefabPowerup, pos, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(prefabPickup, pos, Quaternion.identity);
-                totalSpawned++;
-            }
-            yield return new WaitForSeconds(Random.Range(spawnMinWait, spawnMaxWait));
+            Destroy(this);
+            gameController.AddScore(1);
+        }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(this);
         }
     }
 
-    public void StartSpawning()
+    public void setParentSpawner(SpawnerController spawner)
     {
-        spawnRoutine = WaitSpawner();
-        StartCoroutine(spawnRoutine);
+        this.parentSpawner = spawner;
     }
 
-    public void StopSpawning()
+    public SpawnerController getParentSpawner()
     {
-        StopCoroutine(spawnRoutine);
-        shouldSpawnInitial = hasInitialSpawn;
+        return this.parentSpawner;
     }
-
-
 }
