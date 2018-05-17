@@ -1,81 +1,64 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickupController : MonoBehaviour {
 
-    public Vector3 center;
-    public Vector3 size;
+    protected GameController gameController;
+    protected PlayerController player;
+    //protected SpawnerController parentSpawner;
 
-    private IEnumerator spawnRoutine;
-
-    public bool stopSpawn;
-
-    public int initialSpawnWait;
-
-    public float spawnMinWait;
-    public float spawnMaxWait;
-
-    public int spawnMaxAmt;
-    public int totalSpawned;
     
 
-    public GameObject prefabPickup;
-    public GameObject prefabPowerup;
-
-
-	// Use this for initialization
-	void Start () {
-
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-	}
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(center, size);
-    }
-
-    public void SpawnPickup()
-    {
-        Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-
-        Instantiate(prefabPickup, pos, Quaternion.identity);
-    }
-
-    IEnumerator WaitSpawner()
-    {
-        yield return new WaitForSeconds(initialSpawnWait);
-
-        while (!stopSpawn && (totalSpawned < spawnMaxAmt))
+    // Use this for initialization
+    void Start () {
+        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        if (gameControllerObject != null)
         {
-            Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-            if(Random.Range(1,100) <= 25)//put this here so first spawning pickup isnt a powerup.
-            {
-                Instantiate(prefabPowerup, pos, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(prefabPickup, pos, Quaternion.identity);
-                totalSpawned++;
-            }
-            yield return new WaitForSeconds(Random.Range(spawnMinWait, spawnMaxWait));
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<PlayerController>();
+        }
+        if (player == null)
+        {
+            Debug.Log("Cannot find 'Player' script");
+        }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameController.AddScore(1);
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            //Debug.Log(parentSpawner);
+            //parentSpawner.totalSpawned--;
+            //parentSpawner.SpawnPickup();
+            Destroy(this.gameObject);
         }
     }
 
-    public void StartSpawning()
+    /*public void setParentSpawner(SpawnerController spawner)
     {
-        spawnRoutine = WaitSpawner();
-        StartCoroutine(spawnRoutine);
+        this.parentSpawner = spawner;
     }
 
-    public void StopSpawning()
+    public SpawnerController getParentSpawner()
     {
-        StopCoroutine(spawnRoutine);
-    }
-
-
+        return this.parentSpawner;
+    }*/
 }

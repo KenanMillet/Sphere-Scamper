@@ -1,18 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public float acceleration;
+    public float maxSpd;
     private Rigidbody rb;
-
     Vector3 movement;
 
-    public GameController gameController;
+    GameController gameController;
+    public GameObject shockwave;
+
+    public bool poweredUp;
 
     void Update() //most game code will go here
     {
-  
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
+        
+        if(Input.GetButtonDown("Use Powerup") && poweredUp == true)
+        {
+            poweredUp = false;
+            shockwave.SetActive(true);
+        }
     }
 
 
@@ -33,23 +46,35 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()// called before physics calcs
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        rb.AddForce(movement * acceleration);
 
-        movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
-
-        rb.AddForce(movement * speed);
-
+        Vector2 velocity2D = new Vector2(rb.velocity.x, rb.velocity.z);
+        if (velocity2D.magnitude > maxSpd)
+        {
+            velocity2D = velocity2D.normalized * maxSpd;
+            //Debug.Log(velocity2D);
+            Vector3 velocity3D = rb.velocity;
+            velocity3D.x = velocity2D.x;
+            velocity3D.z = velocity2D.y;
+            rb.velocity = velocity3D;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+   
+
+    void OnEnable()
     {
-        if(other.gameObject.CompareTag("Pick Up"))
-        {
-            Destroy(other.gameObject);
-            gameController.AddScore(1);
-            
-        }
+        shockwave.SetActive(false);
+    }
+
+    public bool getPoweredUp()
+    {
+        return this.poweredUp;
+    }
+
+    public void setPoweredUp(bool isIt)
+    {
+        poweredUp = isIt;
     }
 
 }

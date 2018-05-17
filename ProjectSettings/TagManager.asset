@@ -12,6 +12,7 @@ TagManager:
   - Villain, Alpha
   - Spawner
   - Power Up
+  - Obstacle
   layers:
   - Default
   - TransparentFX
